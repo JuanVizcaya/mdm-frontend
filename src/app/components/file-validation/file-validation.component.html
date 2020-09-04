@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-12 d-flex justify-content-center my-2">
+    <table class="table table-striped my-2">
+      <tbody>
+        <tr>
+          <th>Tipo de catálogo</th>
+          <td>{{ loadResponse.data.filesType }}</td>
+        </tr>
+        <tr>
+          <th>Autor</th>
+          <td>{{ loadResponse.data.author.first_name }} {{ loadResponse.data.author.last_name }}</td>
+        </tr>
+        <tr>
+          <th>Versión del catálogo</th>
+          <td>{{ loadResponse.data.filesVersion }}</td>
+        </tr>
+        <tr>
+          <th>Id de carga</th>
+          <td class="id-carga">{{ loadResponse.data.filesId }}</td>
+        </tr>
+        <tr *ngIf="loadResponse.valid">
+          <th class="table-success">Validación</th>
+          <td class="table-success">Correcta</td>
+        </tr>
+        <tr *ngIf="!loadResponse.valid">
+          <th class="table-danger">Validación</th>
+          <td class="table-danger">Incorrecta <button (click)="openBottomSheet()" class="btn"><i class="fas fa-file-alt"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <button [mat-dialog-close]="'closed'" (click)="goSeguimiento()" class="btn btn-success">Segumiento de carga</button>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="row mb-5">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <div>
+      <h3 class="text-danger text-uppercase my-0">Informe de errores</h3>
+    </div>
+    <div>
+      <button mat-icon-button (click)="close($event)" class="close-button"><i class="material-icons md-18">close</i></button>
+    </div>
+  </div>
+  <mat-divider class="col-12"></mat-divider>
+  <div class="col-12 mb-5">
+    <mat-nav-list>
+      <h4>{{ data.status }}</h4>
+      <div *ngFor="let error of data.errors" mat-list-item class="my-1">
+        <span mat-line>{{ error }}</span>
+      </div>
+
+    </mat-nav-list>
+  </div>
+</div>
+

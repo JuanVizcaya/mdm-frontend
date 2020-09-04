@@ -1,0 +1,21 @@
+div.card-body {
+  transition: .5s ease;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+h4, h5 {
+  text-transform: uppercase;
+}
+
+th {
+  font-size: small;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+i {
+  transition: .3s ease;
+}

@@ -1,0 +1,118 @@
+
+<!-- Sidebar -->
+<div class="side-container">
+
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" [ngClass]="{toggled: toggled}" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <div>MDM <sup>DGAAE</sup></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+      <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Tablero</span>
+      </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Catálogos
+    </div>
+
+    <!-- Nav Item - Entidades Collapse Menu -->
+    <li class="nav-item active" >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEnt" aria-expanded="true" aria-controls="collapseEnt">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Entidades</span>
+      </a>
+      <div id="collapseEnt" class="collapse" aria-labelledby="headingEnt" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Opciones:</h6>
+          <a class="collapse-item active" href="ver?catalogo=entidades">Ver Datos</a>
+          <a class="collapse-item" href="carga?catalogo=entidades">Cargar Catálogo</a>
+          <a class="collapse-item" href="apis?catalogo=entidades">Web Services</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Nav Item - Municipios Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMun" aria-expanded="true" aria-controls="collapseMun">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Municipios</span>
+      </a>
+      <div id="collapseMun" class="collapse" aria-labelledby="headingMun" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Opciones:</h6>
+          <a class="collapse-item active" href="#">Ver Datos</a>
+          <a class="collapse-item" href="carga?catalogo=municipios">Cargar Catálogo</a>
+          <a class="collapse-item" href="#">Web Services</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Nav Item - Localidades Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoc" aria-expanded="true" aria-controls="collapseLoc">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Localidades</span>
+      </a>
+      <div id="collapseLoc" class="collapse" aria-labelledby="headingLoc" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Opciones:</h6>
+          <a class="collapse-item active" href="#">Ver Datos</a>
+          <a class="collapse-item" href="carga?catalogo=localidades">Cargar Catálogo</a>
+          <a class="collapse-item" href="#">Web Services</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Herramientas
+    </div>
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Estadísticos</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Tablas</span>
+      </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" (click)="toggled = !toggled" id="sidebarToggle"></button>
+    </div>
+
+  </ul>
+</div>
+<!-- End of Sidebar -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>

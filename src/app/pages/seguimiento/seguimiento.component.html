@@ -1,0 +1,217 @@
+<div id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <app-topbar></app-topbar>
+    <!-- Main Content -->
+    <div id="content" class="container">
+
+      <div class="row justify-content-center mt-3">
+
+        <!-- CARD: SEGUIMIENTO DE CARGA -->
+        <div class="col-md-12 col-lg-7 mb-4">
+          <div class="card shadow mb-4 border-left-info">
+            <div class="card-header py-2">
+              <div class="row">
+                <a class="col nav-link d-flex" (click)="showSeguimiento = !showSeguimiento">
+                  <h5 class="m-0 font-weight-bold text-primary">Seguimiento de carga <span>(Cancelado)</span></h5>
+                  <i [ngClass]="{'rotate-180': showSeguimiento}" class="ml-auto fas fa-sort-down"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body" [ngClass]="{'collapse': !showSeguimiento}">
+              <div class="row">
+                <!-- BOTONES -->
+                <div class="col-12 d-flex">
+                  <form method="post">
+                    <button (click)="validacion()" class="btn btn-sm btn-icon-split mr-1" type="submit" name="valid" [ngClass]="{'btn-secondary': !buttons[0], 'btn-success': buttons[0]}" [disabled]="!buttons[0]">
+                      <span class="text">Validación</span>
+                    </button>
+                    <button class="btn btn-sm btn-icon-split mr-1" type="submit" name="dq" [ngClass]="{'btn-secondary': !buttons[1], 'btn-success': buttons[1]}" [disabled]="!buttons[1]">
+                      <span class="text">Limpieza</span>
+                    </button>
+
+                    <button class="btn btn-sm btn-icon-split mr-1" type="submit" name="simulation" [ngClass]="{'btn-secondary': !buttons[2], 'btn-success': buttons[2]}" [disabled]="!buttons[2]">
+                      <span class="text">Simulación</span>
+                    </button>
+                    <button class="btn btn-sm btn-icon-split mr-1" type="submit" name="load_to_db" [ngClass]="{'btn-secondary': !buttons[3], 'btn-success': buttons[3]}" [disabled]="!buttons[3]">
+                      <span class="text">Cargar</span>
+                    </button>
+
+                    <button (click)="cancelar()" class="btn btn-sm btn-danger btn-icon-split mr-1" type="submit" name="cancel" [ngClass]="{'btn-secondary': !buttons[4]}" [disabled]="!buttons[4]">
+                      <span class="text">Cancelar</span>
+                    </button>
+                    <!-- <button class="btn btn-sm btn-danger btn-icon-split mr-1" type="submit" name="delete">
+                      <span class="text">Eliminar</span>
+                    </button>
+                    <button class="btn btn-sm btn-secondary btn-icon-split mr-1" disabled>
+                      <span class="text">Cancelar</span>
+                    </button> -->
+                  </form>
+
+                  <a class="btn btn-sm btn-info btn-icon-split ml-auto" onclick="window.location.reload()" name="refresh">
+                    <span class="icon text-white-50"><i class="fas fa-redo-alt"></i></span>
+                    <span class="text text-white">Recargar</span>
+                  </a>
+                </div>
+                <div class="col-12 my-2">
+                  <div class="progress" style="height: 5px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 5%;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+              <hr class="card-body-divider my-2">
+
+              <!-- ESTADO DE LA CARGA -->
+              <div class="row">
+
+                <div *ngIf="loading" class="row">
+                  <div class="col-12 d-flex justify-content-center my-2">
+                    <mat-spinner color="warn"></mat-spinner>
+                  </div>
+                  <small class="col-12 d-flex justify-content-center text-muted">Cargando..</small>
+                </div>
+
+
+                <div *ngIf="!loading" class="col-12 mb-1">
+                  <h4>Estado de la carga</h4>
+                </div>
+                <div *ngIf="!loading" class="col-12">
+
+
+
+
+                  <table class="table-striped" width="100%" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Tipo de catálogo</th>
+                        <td>{{ data.dataSeguimiento.filesType }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Versión</th>
+                        <td>{{ data.dataSeguimiento.filesVersion }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Estatus</th>
+                        <td>{{ data.dataSeguimiento.status }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Descipción del estatus</th>
+                        <td>
+                          <p class="m-0">{{ data.dataSeguimiento.statusDesc }}</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Proceso activo</th>
+                        <td>{{ data.dataSeguimiento.nextStep }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Cargado por</th>
+                        <td data-toggle="tooltip" data-placement="top" [title]="data.dataSeguimiento.author.email">{{ data.dataSeguimiento.author.first_name }} {{ data.dataSeguimiento.author.last_name }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Fecha de carga</th>
+                        <td>{{ data.dataSeguimiento.uploadedDate | date }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Id de carga</th>
+                        <td class="id-carga">{{ data.dataSeguimiento.filesId }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CARD: RESULTADOS -->
+        <div class="col-md-12 col-lg-5">
+          <div class="card shadow mb-4 border-left-info">
+            <div class="card-header py-2">
+              <div class="row">
+                <a class="col nav-link d-flex" (click)="showResultados = !showResultados">
+                  <h5 class="m-0 font-weight-bold text-primary">Resultados</h5>
+                  <i [ngClass]="{'rotate-180': showResultados}" class="ml-auto fas fa-sort-down"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body" [ngClass]="{'collapse': !showResultados}">
+              <div class="row">
+                <div *ngIf="loading" class="row">
+                  <div class="col-12 d-flex justify-content-center my-2">
+                    <mat-spinner color="warn"></mat-spinner>
+                  </div>
+                  <small class="col-12 d-flex justify-content-center text-muted">Cargando..</small>
+                </div>
+
+                <div *ngIf="!loading" class="col d-flex justify-content-center">
+                  <div *ngIf="!data.dataResultados" class="row d-flex justify-content-center">
+                    <p class="m-0 no-data">No hay datos para mostrar</p>
+                  </div>
+                  <table *ngIf="data.dataResultados" class="table-striped tab-resultados" width="100%" cellspacing="0">
+                    <thead>
+                      <th class="text-center">Código</th>
+                      <th>Descripción</th>
+                      <th class="text-center">Cantidad</th>
+                      <th>Tipo</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let mov of data.dataResultados">
+                        <td class="text-center" [ngClass]="{'totales': ['AT','BT'].includes(mov.cgo_act)}">{{ mov.cgo_act }}</td>
+                        <td [ngClass]="{'totales': ['AT','BT'].includes(mov.cgo_act)}">{{ mov.descgo_act }}</td>
+                        <td class="text-center" [ngClass]="{'totales': ['AT','BT'].includes(mov.cgo_act)}">{{ mov.mov_cant }}</td>
+                        <td [ngClass]="{'totales': ['AT','BT'].includes(mov.cgo_act)}">{{ mov.move_type }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD: DATOS -->
+        <div class="col-12">
+          <div class="card shadow mb-4 border-left-warning">
+            <div class="card-header py-2">
+              <div class="row">
+                <a class="col nav-link d-flex" (click)="showDatos = !showDatos">
+                  <h5 class="m-0 font-weight-bold text-primary">DATOS</h5>
+                  <i [ngClass]="{'rotate-180': showDatos}" class="ml-auto fas fa-sort-down"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body" [ngClass]="{'collapse': !showDatos}">
+              <div class="row">
+
+                <div *ngIf="loading" class="row">
+                  <div class="col-12 d-flex justify-content-center my-2">
+                    <mat-spinner color="warn"></mat-spinner>
+                  </div>
+                  <small class="col-12 d-flex justify-content-center text-muted">Cargando..</small>
+                </div>
+
+                <div *ngIf="!loading" class="col d-flex justify-content-center">
+                  <div *ngIf="!data.dataDatos" class="row d-flex justify-content-center">
+                    <p class="m-0 no-data">No hay datos para mostrar</p>
+                  </div>
+
+                  <div *ngIf="data.dataDatos" class="">
+                    Sí hay
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+    <app-footer></app-footer>
+  </div>
+
+</div>

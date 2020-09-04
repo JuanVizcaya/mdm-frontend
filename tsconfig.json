@@ -6,6 +6,7 @@
 */
 {
   "files": [],
+  "types": ["jquery"],
   "references": [
     {
       "path": "./tsconfig.app.json"

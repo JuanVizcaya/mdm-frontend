@@ -1,0 +1,109 @@
+<mat-card class="col-12 upload-card">
+  <div class="row">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Nueva Carga</mat-card-title>
+      <mat-card-subtitle class="my-0">Catálogo de {{ catType }}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="col d-flex justify-content-end align-baseline">
+      <button mat-icon-button  [mat-dialog-close]="'closed'" [disabled]="step === 1 || loadProgress > 0" class="close-button"><i class="material-icons md-18">close</i></button>
+    </div>
+  </div>
+  <hr class="my-2">
+  <mat-card-content class="animate__animated animate__fadeIn">
+    <!-- ======== FORMULARIO DE CARGA ======== -->
+    <form *ngIf="step === 0" [formGroup]="forma" (ngSubmit)="enviar()">
+      <div class="row">
+        <div class="col-7 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Año</label>
+            </div>
+            <select class="custom-select" formControlName="anio" [class.is-invalid]="anioInvalido" id="inputGroupSelect01">
+              <option selected>Seleccionar...</option>
+              <option *ngFor="let anio of aniosCalendario.sort().reverse()">{{ anio }}</option>
+            </select>
+          </div>
+          <small *ngIf="anioInvalido" class="text-danger animate__animated animate__fadeIn">Selecciona un año</small>
+        </div>
+        <div class="col-5 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect02">Mes</label>
+            </div>
+            <select class="custom-select" formControlName="mes" [class.is-invalid]="mesInvalido" id="inputGroupSelect02">
+              <option selected>Seleccionar...</option>
+              <option *ngFor="let mes of mesesCalendario">{{ mes }}</option>
+            </select>
+            <small *ngIf="mesInvalido" class="text-danger animate__animated animate__fadeIn">Selecciona un mes</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-12 mb-3">
+          <div class="input-group">
+
+            <div class="custom-file">
+              <label class="custom-file-label" for="catalogo">{{ catLabel }}</label>
+              <input type="file" class="custom-file-input" id="catalogo" (change)="selectedCatalogo($event)" [class.is-invalid]="catalogoInvalido" formControlName="catalogo">
+            </div>
+          </div>
+          <small *ngIf="catalogoInvalido" class="text-danger animate__animated animate__fadeIn">Selecciona el archivo CSV</small>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div class="input-group">
+            <div class="custom-file">
+              <label class="custom-file-label" for="actualizacion">{{ actLabel }}</label>
+              <input type="file" (change)="selectedActualizacion($event)" [class.is-invalid]="actualizacionInvalido" formControlName="actualizacion" class="custom-file-input" id="actualizacion">
+            </div>
+          </div>
+          <small *ngIf="actualizacionInvalido" class="text-danger animate__animated animate__fadeIn">Selecciona el archivo CSV</small>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div class="input-group">
+            <div class="custom-file">
+              <label class="custom-file-label" for="equivalencias">{{ eqvLabel }}</label>
+              <input type="file" (change)="selectedEquivalencias($event)" [class.is-invalid]="equivalenciasInvalido" formControlName="equivalencias" class="custom-file-input" id="equivalencias">
+            </div>
+          </div>
+          <small *ngIf="equivalenciasInvalido" class="text-danger animate__animated animate__fadeIn">Selecciona el archivo CSV</small>
+        </div>
+
+      </div>
+
+      <button class="btn btn-success" [disabled]="loadProgress > 0">Cargar</button>
+      <div *ngIf="loadProgress > 0" class="col px-0 mt-2 animate__animated animate__fadeIn">
+        <small class="text-muted">Cargando archivos..</small>
+
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" [style.width.%]="loadProgress" (aria-valuenow)="loadProgress" aria-valuemin="0" aria-valuemax="100">{{loadProgress}}%</div>
+        </div>
+
+      </div>
+    </form>
+
+    <!-- ======== VALIDACIÓN DE ARCHIVOS ======== -->
+    <div *ngIf="step === 1" class="row justify-content-center animate__animated animate__fadeIn">
+      <h4>Validando archivos</h4>
+      <div class="col-12 d-flex justify-content-center my-2">
+        <mat-spinner color="warn"></mat-spinner>
+      </div>
+      <small class="text-muted">Por favor espera..</small>
+    </div>
+
+    <!-- ======== FICHA DE CARGA ======== -->
+    <div *ngIf="step === 2" class="animate__animated animate__fadeIn">
+      <app-file-validation [uploadResult]="true" [loadResponse]="loadResponse"></app-file-validation>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- <div class="col-12 d-flex justify-content-end my-2">
+      <button class="btn btn-danger" [mat-dialog-close]="status">Cerrar</button>
+    </div> -->
+  </mat-card-actions>
+</mat-card>

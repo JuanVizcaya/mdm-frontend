@@ -1,0 +1,9 @@
+.side-container {
+  position: sticky;
+  top: 0px;
+  z-index: 3;
+}
+
+.sidebar {
+  transition: .5s ease;
+}
