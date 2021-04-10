@@ -18,6 +18,7 @@ export class SeguimientoComponent implements OnInit {
 
   idCarga: string;
   data: Seguimiento;
+  dataDatos: any;
   buttons: number[] = [];
 
   constructor( private seguimientoService: SeguimientoService,
@@ -41,8 +42,9 @@ export class SeguimientoComponent implements OnInit {
         if ( this.data.dataResultados ) {
           this.showResultados = true;
         }
-        if ( this.data.dataDatos ) {
+        if ( this.data.dataDatosExists ) {
           this.showDatos = true;
+          this.fillDatos();
         }
         this.loading = false;
       },
@@ -61,6 +63,14 @@ export class SeguimientoComponent implements OnInit {
         });
       }
       );
+    }
+
+    fillDatos(): void {
+      this.seguimientoService.getDatos(this.idCarga)
+      .subscribe( resp => {
+        this.dataDatos = resp;
+        console.log(this.dataDatos);
+      });
     }
 
     validacion(): void {

@@ -17,10 +17,18 @@ export class SeguimientoService {
       });
   }
 
+  getDatos( idCarga ): Observable<any> {
+    return this.http.get(`${ environment.urlServ }/admdata/seguimiento-movs?idcarga=${ idCarga }`, {
+      headers: new HttpHeaders().set('Authorization', environment.token)
+    });
+  }
+
   validacion( idCarga: string ): Observable<Seguimiento> {
     return this.http.get<Seguimiento>(`${ environment.urlServ }/admdata/validacifras?idcarga=${ idCarga }`, {
       headers: new HttpHeaders().set('Authorization', environment.token)
     });
   }
+
+
 
 }

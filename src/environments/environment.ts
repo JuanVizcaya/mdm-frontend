@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  urlServ: 'http://172.25.6.55:8000',
-  token: 'Token 13dfd528970d0aad8607b0409396c49f212dc9a4'
+  urlServ: 'http://localhost:8000',
+  token: 'Token 6f42f4332bccb30e94d0fb71def4a255dac55b3b'
 };
 
 /*

@@ -63,7 +63,7 @@ export class Seguimiento {
   dataSeguimiento: Carga;
   dataResultados: Movimiento[];
   // TODO: Actualizar clase
-  dataDatos: any;
+  dataDatosExists: Boolean;
 }
 
 
