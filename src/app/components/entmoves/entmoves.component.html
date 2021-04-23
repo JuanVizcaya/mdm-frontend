@@ -1,0 +1,116 @@
+<div *ngIf="data">
+
+    <span class="table-add align-items-right mb-3 mr-2">
+      <a class="text-success" (click)="add()">
+          +
+      </a>
+    </span>
+
+    <div class="mat-elevation-z2">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- <ng-container matColumnDef="{{column.key}}" *ngFor="let column of columnsToDisplay">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}} </th>
+          <td class="my-0" mat-cell *matCellDef="let element; let i = index">
+            <span contenteditable="true" class="editable px-1 py-2" (keyup)="changeValue(i, $event)" (blur)="updateList($event)"><small>{{element[column.key]}}</small></span>
+          </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <span class="px-1 py-2 text-muted"><small>{{element.id}}</small></span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cve_ent">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Clave de Entidad </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <span contenteditable="true" class="editable px-1 py-2" (keyup)="changeValue(i, $event)" (blur)="updateList($event)"><small>{{element.cve_ent}}</small></span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nom_ent">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de Entidad </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <span contenteditable="true" class="editable px-1 py-2" (keyup)="changeValue(i, $event)" (blur)="updateList($event)"><small>{{element.nom_ent}}</small></span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descgo_act">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Movimiento </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <span contenteditable="true" class="editable px-1 py-2" (keyup)="changeValue(i, $event)" (blur)="updateList($event)"><small>{{element.descgo_act}}</small></span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mov_inegi">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Reporta INEGI </th>
+          <td class="text-center" mat-cell *matCellDef="let element; let i = index">
+            <mat-checkbox color="primary" [checked]="element.mov_inegi" name="mov_inegi"  value="{{ element.mov_inegi }}" aria-label="checkbox"></mat-checkbox>
+            <!-- <span contenteditable="true" class="editable px-1 py-2" (keyup)="changeValue(i, $event)" (blur)="updateList($event)"><small>{{element.mov_inegi}}</small></span> -->
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ent">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Entidad Asociada </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <span class="px-1 py-2"><small>{{element.ent}}</small></span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="snap_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Snap ID </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <span contenteditable="true" class="editable px-1 py-2" (keyup)="changeValue(i, $event)" (blur)="updateList($event)"><small>{{element.snap_id}}</small></span>
+          </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayKeys"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplayKeys;"></tr>
+
+
+
+
+        <!-- <table class="table table-bordered table-responsive-lg table-striped text-center">
+      <tr>
+          <th class="text-center">Entidad</th>
+          <th class="text-center">Clave</th>
+          <th class="text-center">Movimiento</th>
+          <th class="text-center">INEGI</th>
+          <th class="text-center">Entidad Rel</th>
+          <th class="text-center">Eliminar</th>
+      </tr>
+      <tr *ngFor="let move of data.data; let id = index">
+          <td>
+            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{move.nom_ent}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'age', $event)" (blur)="updateList(id, 'age', $event)">{{move.cve_ent}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'companyName', $event)" (blur)="updateList(id, 'companyName', $event)">{{move.descgo_act}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'country', $event)" (blur)="updateList(id, 'country', $event)">{{move.mov_inegi}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'city', $event)" (blur)="updateList(id, 'city', $event)">{{move.ent}}</span>
+          </td>
+          <td>
+            <span class="table-remove">
+              <button type="button" color="danger" class="btn" (click)="remove(id)"><i class="fas fa-trash-alt"></i></button>
+            </span>
+          </td>
+      </tr>
+    </table> -->
+
+      </table>
+    </div>
+
+
+
+
+</div>

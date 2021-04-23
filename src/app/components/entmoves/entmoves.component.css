@@ -1,0 +1,11 @@
+.editable {
+  display: inline-block;
+}
+
+table {
+  width: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}

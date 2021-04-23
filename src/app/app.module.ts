@@ -20,6 +20,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { FileValidationComponent } from './components/file-validation/file-validation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InfoComponent } from './components/file-validation/info.component';
+import { EntmovesComponent } from './components/entmoves/entmoves.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { InfoComponent } from './components/file-validation/info.component';
     ApisComponent,
     NuevacargaComponent,
     FileValidationComponent,
-    InfoComponent
+    InfoComponent,
+    EntmovesComponent
   ],
   imports: [
     BrowserModule,

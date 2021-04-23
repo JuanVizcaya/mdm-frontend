@@ -69,7 +69,7 @@ export class SeguimientoComponent implements OnInit {
       this.seguimientoService.getDatos(this.idCarga)
       .subscribe( resp => {
         this.dataDatos = resp;
-        console.log(this.dataDatos);
+        // console.log(this.dataDatos);
       });
     }
 

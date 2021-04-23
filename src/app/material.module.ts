@@ -15,6 +15,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatBottomSheetModule,
     MatListModule,
     MatDividerModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
   ],
   exports: [
     MatDatepickerModule,
@@ -51,7 +53,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatBottomSheetModule,
     MatListModule,
     MatDividerModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }
